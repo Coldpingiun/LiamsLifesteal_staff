@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BloodBound SMP — Staff Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blood: #8B0000;
+    --blood-bright: #C0392B;
+    --blood-dim: #5a0000;
+    --void: #0a0a0a;
+    --void-2: #111111;
+    --void-3: #1a1a1a;
+    --void-4: #222222;
+    --ash: #888888;
+    --ash-light: #aaaaaa;
+    --parchment: #d4c9b0;
+    --gold: #c9a84c;
+    --glow: rgba(139,0,0,0.25);
+    --border: rgba(139,0,0,0.3);
+    --border-bright: rgba(192,57,43,0.6);
+  }
+
+  body {
+    background: var(--void);
+    color: var(--parchment);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ---------- HERO / HEADER ---------- */
+  .site-header {
+    position: relative;
+    background: var(--void);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    z-index: 100;
+  }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blood-bright), transparent);
+  }
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    position: relative;
+  }
+  .logo-icon svg { width: 100%; height: 100%; }
+  .logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+  .logo-text span {
+    color: var(--blood-bright);
+  }
+  .header-badge {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ash);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+  nav.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  nav.header-nav a {
+    font-size: 13px;
+    color: var(--ash-light);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+  nav.header-nav a:hover { color: #fff; background: var(--void-4); }
+  nav.header-nav a.active { color: var(--blood-bright); }
+
+  /* ---------- HERO SECTION ---------- */
+  .hero {
+    position: relative;
+    padding: 80px 2rem 64px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,0,0,0.15), transparent);
+    pointer-events: none;
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blood-bright);
+    margin-bottom: 20px;
+    border: 1px solid var(--blood-dim);
+    padding: 5px 16px;
+    border-radius: 100px;
+  }
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 .accent { color: var(--blood-bright); }
+  .hero p {
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-size: 15px;
+    color: var(--ash-light);
+    line-height: 1.7;
+  }
+  .hero-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blood-bright), transparent);
+    margin: 0 auto;
+  }
+
+  /* ---------- MAIN LAYOUT ---------- */
+  .main {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 56px 2rem 80px;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blood-bright);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--ash);
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  /* ---------- RANK CARDS ---------- */
+  .ranks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+  .rank-card {
+    background: var(--void-3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: default;
+  }
+  .rank-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-2px);
+  }
+  .rank-card.restricted {
+    border-color: rgba(139,0,0,0.2);
+    opacity: 0.75;
+  }
+  .rank-card.restricted:hover { opacity: 0.9; }
+  .rank-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .rank-card.mod::before    { background: #3498db; }
+  .rank-card.admin::before  { background: #e67e22; }
+  .rank-card.dev::before    { background: #2ecc71; }
+  .rank-card.coowner::before { background: var(--gold); }
+  .rank-card.owner::before  { background: var(--blood-bright); }
+
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+  .rank-badge.mod    { background: rgba(52,152,219,0.15); color: #5dade2; border: 1px solid rgba(52,152,219,0.25); }
+  .rank-badge.admin  { background: rgba(230,126,34,0.15); color: #e59a50; border: 1px solid rgba(230,126,34,0.25); }
+  .rank-badge.dev    { background: rgba(46,204,113,0.15); color: #52c97f; border: 1px solid rgba(46,204,113,0.25); }
+  .rank-badge.coowner { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
+  .rank-badge.owner  { background: rgba(139,0,0,0.2); color: #e05050; border: 1px solid rgba(192,57,43,0.3); }
+
+  .rank-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .rank-desc {
+    font-size: 13px;
+    color: var(--ash);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .rank-perms {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .rank-perms li {
+    font-size: 12px;
+    color: var(--ash-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .rank-perms li::before {
+    content: '—';
+    color: var(--blood-bright);
+    flex-shrink: 0;
+  }
+  .restricted-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--blood-bright);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .restricted-pill svg { flex-shrink: 0; }
+
+  /* ---------- STAFF TABLE ---------- */
+  .staff-section { margin-bottom: 64px; }
+  .staff-table-wrap {
+    background: var(--void-3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .staff-table-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .staff-table-header span {
+    font-size: 13px;
+    color: var(--ash);
+  }
+  .online-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: #2ecc71;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  table.staff-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table.staff-table thead tr {
+    border-bottom: 1px solid var(--border);
+  }
+  table.staff-table thead th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ash);
+    padding: 12px 20px;
+  }
+  table.staff-table tbody tr {
+    border-bottom: 1px solid rgba(139,0,0,0.1);
+    transition: background 0.15s;
+  }
+  table.staff-table tbody tr:last-child { border-bottom: none; }
+  table.staff-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+  table.staff-table tbody td {
+    padding: 13px 20px;
+    font-size: 14px;
+    color: var(--ash-light);
+    vertical-align: middle;
+  }
+  .td-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff !important;
+    font-weight: 500;
+  }
+  .avatar {
+    width: 30px; height: 30px;
+    border-radius: 5px;
+    background: var(--void-4);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ash-light);
+    flex-shrink: 0;
+    overflow: hidden;
+    font-family: 'Cinzel', serif;
+  }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .status-pill.online  { background: rgba(46,204,113,0.12); color: #52c97f; }
+  .status-pill.offline { background: rgba(136,136,136,0.12); color: var(--ash); }
+  .status-pill.afk     { background: rgba(230,126,34,0.12); color: #e59a50; }
+
+  /* ---------- PACT SECTION ---------- */
+  .pact-section {
+    background: var(--void-3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 64px;
+  }
+  .pact-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(139,0,0,0.08), transparent);
+    pointer-events: none;
+  }
+  .pact-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pact-title .skull {
+    color: var(--blood-bright);
+    font-size: 1.1em;
+  }
+  .pact-rules {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pact-rules li {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--ash-light);
+    line-height: 1.6;
+  }
+  .rule-num {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--blood-bright);
+    font-weight: 600;
+    min-width: 22px;
+    padding-top: 1px;
+  }
+
+  /* ---------- LOGIN MODAL ---------- */
+  .login-section {
+    max-width: 420px;
+    margin: 0 auto 64px;
+    background: var(--void-3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .login-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blood-bright), transparent);
+  }
+  .login-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .login-sub {
+    font-size: 13px;
+    color: var(--ash);
+    margin-bottom: 24px;
+  }
+  .form-field { margin-bottom: 16px; }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 6px;
+  }
+  .form-input {
+    width: 100%;
+    background: var(--void-2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 13px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--blood-bright); }
+  .form-input::placeholder { color: #555; }
+  .btn-login {
+    width: 100%;
+    background: var(--blood);
+    border: 1px solid var(--blood-bright);
+    border-radius: 7px;
+    padding: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    color: #fff;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+  }
+  .btn-login:hover { background: var(--blood-bright); }
+  .form-note {
+    font-size: 12px;
+    color: var(--ash);
+    text-align: center;
+    margin-top: 14px;
+  }
+  .form-note a { color: var(--blood-bright); text-decoration: none; }
+
+  /* ---------- RESTRICTED NOTICE ---------- */
+  .restricted-notice {
+    background: rgba(139,0,0,0.08);
+    border: 1px solid rgba(192,57,43,0.25);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--ash-light);
+    line-height: 1.6;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .restricted-notice .lock-icon {
+    color: var(--blood-bright);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 2rem;
+    text-align: center;
+    font-size: 12px;
+    color: #444;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139,0,0,0.4), transparent);
+  }
+  footer span { color: var(--blood-bright); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 600px) {
+    .site-header { padding: 0 1rem; }
+    nav.header-nav a { display: none; }
+    .main { padding: 40px 1rem 60px; }
+    .ranks-grid { grid-template-columns: 1fr 1fr; }
+    table.staff-table thead th:nth-child(3),
+    table.staff-table tbody td:nth-child(3) { display: none; }
+    .pact-section { padding: 24px 18px; }
+    .login-section { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="logo-area">
+    <div class="logo-icon">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="7" fill="#1a0000"/>
+        <path d="M18 5 L23 14 H30 L24 19 L26 28 L18 23 L10 28 L12 19 L6 14 H13 Z" fill="#8B0000" stroke="#C0392B" stroke-width="0.8"/>
+        <circle cx="18" cy="17" r="3" fill="#C0392B"/>
+        <path d="M15 24 Q18 28 21 24" stroke="#C0392B" stroke-width="1" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="logo-text">Blood<span>Bound</span> SMP</span>
+    <span class="header-badge">Staff Portal</span>
+  </div>
+  <nav class="header-nav">
+    <a href="#ranks" class="active">Rangen</a>
+    <a href="#staff">Team</a>
+    <a href="#pact">Het Pact</a>
+    <a href="#login">Inloggen</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Bloedgebonden &nbsp;·&nbsp; Vertrouwen &nbsp;·&nbsp; Gezag</p>
+  <h1>LiamsLifesteal<br><span class="accent">Staff Portaal</span></h1>
+  <p>Alleen zij die het pact hebben ondertekend mogen deze pagina's betreden. Moderators, Admins en de hogere rangen bewaken de orde van de Void.</p>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- RANKS SECTION -->
+  <div id="ranks">
+    <p class="section-eyebrow">Hiërarchie</p>
+    <h2 class="section-title">De rangen van het pact</h2>
+    <p class="section-desc">Elke rang draagt verantwoordelijkheden. Niet alle deuren staan open voor iedereen.</p>
+
+    <div class="ranks-grid">
+      <!-- Moderator -->
+      <div class="rank-card mod">
+        <div class="rank-badge mod">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#5dade2" stroke-width="1.5"/></svg>
+          Moderator
+        </div>
+        <div class="rank-name">Moderator</div>
+        <div class="rank-desc">De wachters van de servers. Eerste aanspreekpunt voor spelers.</div>
+        <ul class="rank-perms">
+          <li>Spelers verbannen & kiken</li>
+          <li>Chat modereren</li>
+          <li>Tickets behandelen</li>
+          <li>Basis server commands</li>
+        </ul>
+      </div>
+
+      <!-- Admin -->
+      <div class="rank-card admin">
+        <div class="rank-badge admin">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="2" stroke="#e59a50" stroke-width="1.5"/></svg>
+          Admin
+        </div>
+        <div class="rank-name">Admin</div>
+        <div class="rank-desc">Gevorderde staffleden met uitgebreidere rechten en beheertaken.</div>
+        <ul class="rank-perms">
+          <li>Alle moderator rechten</li>
+          <li>Server configuratie</li>
+          <li>Nieuwe mods aansturen</li>
+          <li>Events organiseren</li>
+        </ul>
+      </div>
+
+      <!-- Developer -->
+      <div class="rank-card dev restricted">
+        <div class="rank-badge dev">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5 L4 3 L6 5 L8 3" stroke="#52c97f" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Developer
+        </div>
+        <div class="rank-name">Developer</div>
+        <div class="rank-desc">Bouwers van de BloodBound wereld. Plugins, maps en systemen.</div>
+        <ul class="rank-perms">
+          <li>Plugin ontwikkeling</li>
+          <li>Server technisch beheer</li>
+          <li>Database toegang</li>
+          <li>Test-omgeving toegang</li>
+        </ul>
+        <div class="restricted-pill">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2" y="5" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3.5 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Alleen via Co-Owner / Owner
+        </div>
+      </div>
+
+      <!-- Co-Owner -->
+      <div class="rank-card coowner restricted">
+        <div class="rank-badge coowner">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1 L6.2 3.6 L9 3.9 L7 5.8 L7.6 8.6 L5 7.2 L2.4 8.6 L3 5.8 L1 3.9 L3.8 3.6 Z" stroke="#c9a84c" stroke-width="1.2"/></svg>
+          Co-Owner
+        </div>
+        <div class="rank-name">Co-Owner</div>
+        <div class="rank-desc">Tweede in bevel. Beheert het team namens de Owner.</div>
+        <ul class="rank-perms">
+          <li>Alle admin rechten</li>
+          <li>Staff aanstellen & ontslaan</li>
+          <li>Toegang developer rang verlenen</li>
+          <li>Financieel overzicht</li>
+        </ul>
+        <div class="restricted-pill">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2" y="5" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3.5 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Alleen via Co-Owner / Owner
+        </div>
+      </div>
+
+      <!-- Owner -->
+      <div class="rank-card owner restricted" style="grid-column: span 1;">
+        <div class="rank-badge owner">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7 L2.5 3 L5 5.5 L7.5 2 L8.5 7 Z" stroke="#e05050" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          Owner
+        </div>
+        <div class="rank-name">Owner</div>
+        <div class="rank-desc">Absolute macht over het BloodBound-rijk. Het pact begon hier.</div>
+        <ul class="rank-perms">
+          <li>Volledige server controle</li>
+          <li>Alle rechten & toegangen</li>
+          <li>Eindverantwoordelijkheid</li>
+          <li>Pact-beheer</li>
+        </ul>
+        <div class="restricted-pill">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2" y="5" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3.5 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Alleen via Co-Owner / Owner
+        </div>
+      </div>
+    </div>
+
+    <!-- Restricted notice -->
+    <div class="restricted-notice">
+      <div class="lock-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r="1.2" fill="currentColor"/></svg>
+      </div>
+      <div>
+        De rangen <strong style="color:#fff">Developer</strong>, <strong style="color:#fff">Co-Owner</strong> en <strong style="color:#fff">Owner</strong> zijn niet via normale sollicitatie bereikbaar. Toegang tot deze rangen kan enkel worden verleend door een huidige Co-Owner of Owner. Verzoeken via andere kanalen worden genegeerd.
+      </div>
+    </div>
+  </div>
+
+  <!-- STAFF TABLE -->
+  <div id="staff" class="staff-section">
+    <p class="section-eyebrow">Het Team</p>
+    <h2 class="section-title">Actieve staffleden</h2>
+    <p class="section-desc">De bloedgebonden die de orde handhaven.</p>
+
+    <div class="staff-table-wrap">
+      <div class="staff-table-header">
+        <span>5 staffleden actief</span>
+        <span><span class="online-dot"></span>3 online</span>
+      </div>
+      <table class="staff-table">
+        <thead>
+          <tr>
+            <th>Speler</th>
+            <th>Rang</th>
+            <th>Status</th>
+            <th>Lid sinds</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="td-name"><div class="avatar">L</div>Liam_NL</div></td>
+            <td><span class="rank-badge owner" style="font-size:11px;padding:3px 9px;">Owner</span></td>
+            <td><span class="status-pill online">● Online</span></td>
+            <td>Jan 2024</td>
+          </tr>
+          <tr>
+            <td><div class="td-name"><div class="avatar">S</div>Shadow_PvP</div></td>
+            <td><span class="rank-badge coowner" style="font-size:11px;padding:3px 9px;">Co-Owner</span></td>
+            <td><span class="status-pill afk">● AFK</span></td>
+            <td>Jan 2024</td>
+          </tr>
+          <tr>
+            <td><div class="td-name"><div class="avatar">V</div>VoidCraft</div></td>
+            <td><span class="rank-badge dev" style="font-size:11px;padding:3px 9px;">Developer</span></td>
+            <td><span class="status-pill online">● Online</span></td>
+            <td>Feb 2024</td>
+          </tr>
+          <tr>
+            <td><div class="td-name"><div class="avatar">B</div>BloodAxe</div></td>
+            <td><span class="rank-badge admin" style="font-size:11px;padding:3px 9px;">Admin</span></td>
+            <td><span class="status-pill offline">● Offline</span></td>
+            <td>Mrt 2024</td>
+          </tr>
+          <tr>
+            <td><div class="td-name"><div class="avatar">N</div>NightWarden</div></td>
+            <td><span class="rank-badge mod" style="font-size:11px;padding:3px 9px;">Moderator</span></td>
+            <td><span class="status-pill online">● Online</span></td>
+            <td>Apr 2024</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PACT SECTION -->
+  <div id="pact">
+    <p class="section-eyebrow">Gedragscode</p>
+    <h2 class="section-title">Het Bloedpact</h2>
+    <p class="section-desc">Wie deze regels breekt, verliest zijn plek in de BloodBound-wereld.</p>
+
+    <div class="pact-section">
+      <div class="pact-title">
+        <span class="skull">✦</span> De Wetten van de Void
+      </div>
+      <ul class="pact-rules">
+        <li><span class="rule-num">I.</span> Staff misbruikt zijn rang nooit voor persoonlijk voordeel op de server.</li>
+        <li><span class="rule-num">II.</span> Beslissingen worden onderbouwd genomen en nooit uit emotie. Spelers verdienen een eerlijke behandeling.</li>
+        <li><span class="rule-num">III.</span> Interne communicatie blijft intern. Wat in het staffkanaal besproken wordt, blijft daar.</li>
+        <li><span class="rule-num">IV.</span> Elke staf-actie (ban, kick, mute) wordt gelogd met een duidelijke reden.</li>
+        <li><span class="rule-num">V.</span> Bij twijfel raadpleeg je een hogere rang — nooit solo handelen bij grote beslissingen.</li>
+        <li><span class="rule-num">VI.</span> Activiteitseis: minimaal 5 uur online per week. Inactiviteit zonder melding leidt tot degradatie.</li>
+        <li><span class="rule-num">VII.</span> Developer-, Co-Owner- en Owner-posities worden uitsluitend vergeven door de huidige leidinggevenden. Vragen hierom via publieke kanalen worden genegeerd.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LOGIN SECTION -->
+  <div id="login">
+    <p class="section-eyebrow">Toegang</p>
+    <h2 class="section-title">Staff login</h2>
+    <p class="section-desc">Log in om het interne staffpaneel te betreden.</p>
+
+    <div class="login-section">
+      <div class="login-title">Betreed de Void</div>
+      <div class="login-sub">Gebruik je staffaccount om in te loggen.</div>
+      <div class="form-field">
+        <label class="form-label">Gebruikersnaam</label>
+        <input class="form-input" type="text" placeholder="JouwMCNaam" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">Wachtwoord</label>
+        <input class="form-input" type="password" placeholder="••••••••" />
+      </div>
+      <button class="btn-login">Inloggen</button>
+      <div class="form-note">
+        Geen account? <a href="#">Vraag toegang aan</a> bij een Admin of hoger.
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2024 <span>BloodBound SMP</span> &nbsp;·&nbsp; LiamsLifesteal &nbsp;·&nbsp; Alle rechten voorbehouden</div>
+  <div style="margin-top:6px;font-size:11px;color:#333">Het pact bindt allen die de Void betreden.</div>
+</footer>
+
+</body>
+</html>
