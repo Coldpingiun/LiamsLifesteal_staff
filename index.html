@@ -418,24 +418,21 @@
   //  CONFIGURATION — fill these in before going live
   // ============================================================
   const CONFIG = {
-    CLIENT_ID:    'YOUR_CLIENT_ID_HERE',       // Discord application Client ID
-    GUILD_ID:     'YOUR_GUILD_ID_HERE',         // Your Discord server ID
-    REDIRECT_URI: window.location.href.split('#')[0], // Auto-detects current URL (change if needed)
-    PROXY_URL:    'YOUR_CLOUDFLARE_WORKER_URL_HERE',  // e.g. https://bloodbound-proxy.yourname.workers.dev
+  CLIENT_ID: '1513941515720724541',
+  GUILD_ID: '1422950815789879308',
+  REDIRECT_URI: 'https://coldpingiun.github.io/LiamsLifesteal_staff/',
+  PROXY_URL: 'https://liamslifesteal-staff.noppe-sander.workers.dev',
 
-    // Map Discord role names (exact, case-sensitive) to portal rank classes
-    // Add or remove roles to match your actual Discord server roles
-    ROLE_MAP: {
-      'Owner':     { class: 'owner',   label: 'Owner',      since: null },
-      'Co-Owner':  { class: 'coowner', label: 'Co-Owner',   since: null },
-      'Developer': { class: 'dev',     label: 'Developer',  since: null },
-      'Admin':     { class: 'admin',   label: 'Admin',      since: null },
-      'Moderator': { class: 'mod',     label: 'Moderator',  since: null },
-    },
+  ROLE_MAP: {
+    'Owner':     { class: 'owner',   label: 'Owner',      since: null },
+    'Co-Owner':  { class: 'coowner', label: 'Co-Owner',   since: null },
+    'Developer': { class: 'dev',     label: 'Developer',  since: null },
+    'Admin':     { class: 'admin',   label: 'Admin',      since: null },
+    'Moderator': { class: 'mod',     label: 'Moderator',  since: null },
+  },
 
-    // Role priority for display (highest first)
-    ROLE_PRIORITY: ['Owner', 'Co-Owner', 'Developer', 'Admin', 'Moderator'],
-  };
+  ROLE_PRIORITY: ['Owner', 'Co-Owner', 'Developer', 'Admin', 'Moderator'],
+};
   // ============================================================
 
   const SCOPES = 'identify guilds.members.read';
