@@ -20,7 +20,6 @@
     --ash-light: #aaaaaa;
     --parchment: #d4c9b0;
     --gold: #c9a84c;
-    --glow: rgba(139,0,0,0.25);
     --border: rgba(139,0,0,0.3);
     --border-bright: rgba(192,57,43,0.6);
   }
@@ -33,7 +32,6 @@
     overflow-x: hidden;
   }
 
-  /* ---------- HERO / HEADER ---------- */
   .site-header {
     position: relative;
     background: var(--void);
@@ -52,496 +50,165 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--blood-bright), transparent);
   }
-  .logo-area {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    position: relative;
-  }
+  .logo-area { display: flex; align-items: center; gap: 12px; }
+  .logo-icon { width: 36px; height: 36px; }
   .logo-icon svg { width: 100%; height: 100%; }
-  .logo-text {
-    font-family: 'Cinzel', serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.04em;
-  }
-  .logo-text span {
-    color: var(--blood-bright);
-  }
-  .header-badge {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ash);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 3px 8px;
-  }
-  nav.header-nav {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  nav.header-nav a {
-    font-size: 13px;
-    color: var(--ash-light);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: color 0.2s, background 0.2s;
-  }
+  .logo-text { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
+  .logo-text span { color: var(--blood-bright); }
+  .header-badge { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ash); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; }
+  nav.header-nav { display: flex; align-items: center; gap: 4px; }
+  nav.header-nav a { font-size: 13px; color: var(--ash-light); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color 0.2s, background 0.2s; }
   nav.header-nav a:hover { color: #fff; background: var(--void-4); }
   nav.header-nav a.active { color: var(--blood-bright); }
 
-  /* ---------- HERO SECTION ---------- */
-  .hero {
-    position: relative;
-    padding: 80px 2rem 64px;
-    text-align: center;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,0,0,0.15), transparent);
-    pointer-events: none;
-  }
-  .hero-label {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--blood-bright);
-    margin-bottom: 20px;
-    border: 1px solid var(--blood-dim);
-    padding: 5px 16px;
-    border-radius: 100px;
-  }
-  .hero h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.15;
-    margin-bottom: 16px;
-    letter-spacing: 0.02em;
-  }
+  /* User pill in header */
+  .header-user { display: none; align-items: center; gap: 10px; }
+  .header-user.visible { display: flex; }
+  .header-avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--blood-bright); object-fit: cover; }
+  .header-username { font-size: 13px; color: #fff; font-weight: 500; }
+  .btn-logout { font-size: 12px; color: var(--ash); background: none; border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+  .btn-logout:hover { color: var(--blood-bright); border-color: var(--blood-bright); }
+
+  .hero { position: relative; padding: 80px 2rem 64px; text-align: center; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,0,0,0.15), transparent); pointer-events: none; }
+  .hero-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blood-bright); margin-bottom: 20px; border: 1px solid var(--blood-dim); padding: 5px 16px; border-radius: 100px; }
+  .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 16px; letter-spacing: 0.02em; }
   .hero h1 .accent { color: var(--blood-bright); }
-  .hero p {
-    max-width: 520px;
-    margin: 0 auto 36px;
-    font-size: 15px;
-    color: var(--ash-light);
-    line-height: 1.7;
-  }
-  .hero-divider {
-    width: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blood-bright), transparent);
-    margin: 0 auto;
-  }
+  .hero p { max-width: 520px; margin: 0 auto 36px; font-size: 15px; color: var(--ash-light); line-height: 1.7; }
+  .hero-divider { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--blood-bright), transparent); margin: 0 auto; }
 
-  /* ---------- MAIN LAYOUT ---------- */
-  .main {
-    max-width: 1060px;
-    margin: 0 auto;
-    padding: 56px 2rem 80px;
-  }
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--blood-bright);
-    margin-bottom: 8px;
-  }
-  .section-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .section-desc {
-    font-size: 14px;
-    color: var(--ash);
-    margin-bottom: 40px;
-    max-width: 480px;
-  }
+  .main { max-width: 1060px; margin: 0 auto; padding: 56px 2rem 80px; }
+  .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blood-bright); margin-bottom: 8px; }
+  .section-title { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .section-desc { font-size: 14px; color: var(--ash); margin-bottom: 40px; max-width: 480px; }
 
-  /* ---------- RANK CARDS ---------- */
-  .ranks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
-    margin-bottom: 64px;
-  }
-  .rank-card {
-    background: var(--void-3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 18px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.15s;
-    cursor: default;
-  }
-  .rank-card:hover {
-    border-color: var(--border-bright);
-    transform: translateY(-2px);
-  }
-  .rank-card.restricted {
-    border-color: rgba(139,0,0,0.2);
-    opacity: 0.75;
-  }
+  .ranks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 64px; }
+  .rank-card { background: var(--void-3); border: 1px solid var(--border); border-radius: 10px; padding: 20px 18px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.15s; cursor: default; }
+  .rank-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+  .rank-card.restricted { border-color: rgba(139,0,0,0.2); opacity: 0.75; }
   .rank-card.restricted:hover { opacity: 0.9; }
-  .rank-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
+  .rank-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
   .rank-card.mod::before    { background: #3498db; }
   .rank-card.admin::before  { background: #e67e22; }
   .rank-card.dev::before    { background: #2ecc71; }
   .rank-card.coowner::before { background: var(--gold); }
   .rank-card.owner::before  { background: var(--blood-bright); }
 
-  .rank-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 5px;
-    margin-bottom: 12px;
-  }
+  .rank-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 5px; margin-bottom: 12px; }
   .rank-badge.mod    { background: rgba(52,152,219,0.15); color: #5dade2; border: 1px solid rgba(52,152,219,0.25); }
   .rank-badge.admin  { background: rgba(230,126,34,0.15); color: #e59a50; border: 1px solid rgba(230,126,34,0.25); }
   .rank-badge.dev    { background: rgba(46,204,113,0.15); color: #52c97f; border: 1px solid rgba(46,204,113,0.25); }
   .rank-badge.coowner { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
   .rank-badge.owner  { background: rgba(139,0,0,0.2); color: #e05050; border: 1px solid rgba(192,57,43,0.3); }
 
-  .rank-name {
-    font-family: 'Cinzel', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 6px;
-  }
-  .rank-desc {
-    font-size: 13px;
-    color: var(--ash);
-    line-height: 1.6;
-    margin-bottom: 14px;
-  }
-  .rank-perms {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .rank-perms li {
-    font-size: 12px;
-    color: var(--ash-light);
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-  }
-  .rank-perms li::before {
-    content: '—';
-    color: var(--blood-bright);
-    flex-shrink: 0;
-  }
-  .restricted-pill {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 14px;
-    font-size: 11px;
-    color: var(--blood-bright);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-  }
-  .restricted-pill svg { flex-shrink: 0; }
+  .rank-name { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .rank-desc { font-size: 13px; color: var(--ash); line-height: 1.6; margin-bottom: 14px; }
+  .rank-perms { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .rank-perms li { font-size: 12px; color: var(--ash-light); display: flex; align-items: flex-start; gap: 6px; }
+  .rank-perms li::before { content: '—'; color: var(--blood-bright); flex-shrink: 0; }
+  .restricted-pill { display: flex; align-items: center; gap: 5px; margin-top: 14px; font-size: 11px; color: var(--blood-bright); font-weight: 500; letter-spacing: 0.06em; }
 
-  /* ---------- STAFF TABLE ---------- */
+  /* Staff table */
   .staff-section { margin-bottom: 64px; }
-  .staff-table-wrap {
-    background: var(--void-3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .staff-table-header {
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border);
-  }
-  .staff-table-header span {
-    font-size: 13px;
-    color: var(--ash);
-  }
-  .online-dot {
-    display: inline-block;
-    width: 7px; height: 7px;
-    background: #2ecc71;
-    border-radius: 50%;
-    margin-right: 6px;
-  }
-  table.staff-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  table.staff-table thead tr {
-    border-bottom: 1px solid var(--border);
-  }
-  table.staff-table thead th {
-    text-align: left;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ash);
-    padding: 12px 20px;
-  }
-  table.staff-table tbody tr {
-    border-bottom: 1px solid rgba(139,0,0,0.1);
-    transition: background 0.15s;
-  }
+  .staff-table-wrap { background: var(--void-3); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .staff-table-header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+  .staff-table-header span { font-size: 13px; color: var(--ash); }
+  .online-dot { display: inline-block; width: 7px; height: 7px; background: #2ecc71; border-radius: 50%; margin-right: 6px; }
+  table.staff-table { width: 100%; border-collapse: collapse; }
+  table.staff-table thead tr { border-bottom: 1px solid var(--border); }
+  table.staff-table thead th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ash); padding: 12px 20px; }
+  table.staff-table tbody tr { border-bottom: 1px solid rgba(139,0,0,0.1); transition: background 0.15s; }
   table.staff-table tbody tr:last-child { border-bottom: none; }
   table.staff-table tbody tr:hover { background: rgba(255,255,255,0.02); }
-  table.staff-table tbody td {
-    padding: 13px 20px;
+  table.staff-table tbody td { padding: 13px 20px; font-size: 14px; color: var(--ash-light); vertical-align: middle; }
+  .td-name { display: flex; align-items: center; gap: 10px; color: #fff !important; font-weight: 500; }
+  .avatar { width: 30px; height: 30px; border-radius: 5px; background: var(--void-4); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--ash-light); flex-shrink: 0; overflow: hidden; font-family: 'Cinzel', serif; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 5px; }
+  .status-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; padding: 3px 8px; border-radius: 4px; }
+  .status-pill.online  { background: rgba(46,204,113,0.12); color: #52c97f; }
+  .status-pill.offline { background: rgba(136,136,136,0.12); color: var(--ash); }
+
+  /* Staff loading / error states */
+  .staff-loading { padding: 40px 20px; text-align: center; color: var(--ash); font-size: 14px; }
+  .staff-loading .spinner { width: 24px; height: 24px; border: 2px solid var(--border); border-top-color: var(--blood-bright); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .staff-error { padding: 24px 20px; text-align: center; color: var(--blood-bright); font-size: 13px; }
+
+  /* Pact */
+  .pact-section { background: var(--void-3); border: 1px solid var(--border); border-radius: 10px; padding: 32px; position: relative; overflow: hidden; margin-bottom: 64px; }
+  .pact-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(139,0,0,0.08), transparent); pointer-events: none; }
+  .pact-title { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 600; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .pact-title .skull { color: var(--blood-bright); font-size: 1.1em; }
+  .pact-rules { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .pact-rules li { display: flex; gap: 12px; font-size: 14px; color: var(--ash-light); line-height: 1.6; }
+  .rule-num { font-family: 'Cinzel', serif; font-size: 12px; color: var(--blood-bright); font-weight: 600; min-width: 22px; padding-top: 1px; }
+
+  /* Login section */
+  .login-section { max-width: 420px; margin: 0 auto 64px; background: var(--void-3); border: 1px solid var(--border); border-radius: 12px; padding: 36px 32px; position: relative; overflow: hidden; }
+  .login-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blood-bright), transparent); }
+  .login-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .login-sub { font-size: 13px; color: var(--ash); margin-bottom: 24px; line-height: 1.6; }
+
+  /* Discord button */
+  .btn-discord {
+    width: 100%;
+    background: #5865F2;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 16px;
     font-size: 14px;
-    color: var(--ash-light);
-    vertical-align: middle;
-  }
-  .td-name {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #fff !important;
-    font-weight: 500;
-  }
-  .avatar {
-    width: 30px; height: 30px;
-    border-radius: 5px;
-    background: var(--void-4);
-    border: 1px solid var(--border);
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--ash-light);
-    flex-shrink: 0;
-    overflow: hidden;
-    font-family: 'Cinzel', serif;
-  }
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
-  .status-pill.online  { background: rgba(46,204,113,0.12); color: #52c97f; }
-  .status-pill.offline { background: rgba(136,136,136,0.12); color: var(--ash); }
-  .status-pill.afk     { background: rgba(230,126,34,0.12); color: #e59a50; }
-
-  /* ---------- PACT SECTION ---------- */
-  .pact-section {
-    background: var(--void-3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 64px;
-  }
-  .pact-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(139,0,0,0.08), transparent);
-    pointer-events: none;
-  }
-  .pact-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
     gap: 10px;
+    text-decoration: none;
   }
-  .pact-title .skull {
-    color: var(--blood-bright);
-    font-size: 1.1em;
-  }
-  .pact-rules {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .pact-rules li {
-    display: flex;
-    gap: 12px;
-    font-size: 14px;
-    color: var(--ash-light);
-    line-height: 1.6;
-  }
-  .rule-num {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    color: var(--blood-bright);
-    font-weight: 600;
-    min-width: 22px;
-    padding-top: 1px;
-  }
+  .btn-discord:hover { background: #4752C4; transform: translateY(-1px); }
+  .btn-discord:active { transform: translateY(0); }
+  .btn-discord svg { flex-shrink: 0; }
 
-  /* ---------- LOGIN MODAL ---------- */
-  .login-section {
-    max-width: 420px;
-    margin: 0 auto 64px;
-    background: var(--void-3);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 36px 32px;
-    position: relative;
-    overflow: hidden;
-  }
-  .login-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blood-bright), transparent);
-  }
-  .login-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 6px;
-  }
-  .login-sub {
-    font-size: 13px;
-    color: var(--ash);
-    margin-bottom: 24px;
-  }
-  .form-field { margin-bottom: 16px; }
-  .form-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ash);
-    margin-bottom: 6px;
-  }
-  .form-input {
-    width: 100%;
-    background: var(--void-2);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 10px 13px;
-    font-size: 14px;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-input:focus { border-color: var(--blood-bright); }
-  .form-input::placeholder { color: #555; }
-  .btn-login {
-    width: 100%;
-    background: var(--blood);
-    border: 1px solid var(--blood-bright);
-    border-radius: 7px;
-    padding: 11px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Cinzel', serif;
-    color: #fff;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 4px;
-  }
-  .btn-login:hover { background: var(--blood-bright); }
-  .form-note {
-    font-size: 12px;
-    color: var(--ash);
-    text-align: center;
-    margin-top: 14px;
-  }
+  /* Logged-in panel inside login section */
+  .logged-in-panel { display: none; text-align: center; }
+  .logged-in-panel.visible { display: block; }
+  .login-discord-wrap { display: block; }
+  .login-discord-wrap.hidden { display: none; }
+
+  .logged-in-avatar { width: 64px; height: 64px; border-radius: 50%; border: 3px solid var(--blood-bright); margin: 0 auto 14px; display: block; object-fit: cover; }
+  .logged-in-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff; margin-bottom: 6px; }
+  .logged-in-status { font-size: 13px; color: var(--ash); margin-bottom: 20px; }
+  .logged-in-status.staff { color: #52c97f; }
+  .logged-in-status.not-staff { color: var(--blood-bright); }
+
+  .btn-logout-main { background: none; border: 1px solid var(--border); border-radius: 7px; padding: 9px 20px; font-size: 13px; color: var(--ash-light); cursor: pointer; font-family: 'Inter', sans-serif; transition: color 0.2s, border-color 0.2s; }
+  .btn-logout-main:hover { color: var(--blood-bright); border-color: var(--blood-bright); }
+
+  .form-note { font-size: 12px; color: var(--ash); text-align: center; margin-top: 16px; line-height: 1.6; }
   .form-note a { color: var(--blood-bright); text-decoration: none; }
 
-  /* ---------- RESTRICTED NOTICE ---------- */
-  .restricted-notice {
-    background: rgba(139,0,0,0.08);
-    border: 1px solid rgba(192,57,43,0.25);
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-size: 13px;
-    color: var(--ash-light);
-    line-height: 1.6;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    margin-bottom: 40px;
-  }
-  .restricted-notice .lock-icon {
-    color: var(--blood-bright);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
+  .restricted-notice { background: rgba(139,0,0,0.08); border: 1px solid rgba(192,57,43,0.25); border-radius: 8px; padding: 14px 18px; font-size: 13px; color: var(--ash-light); line-height: 1.6; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 40px; }
+  .restricted-notice .lock-icon { color: var(--blood-bright); flex-shrink: 0; margin-top: 1px; }
 
-  /* ---------- FOOTER ---------- */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 28px 2rem;
-    text-align: center;
-    font-size: 12px;
-    color: #444;
-    position: relative;
-  }
-  footer::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 10%; right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(139,0,0,0.4), transparent);
-  }
+  /* Config banner */
+  .config-banner { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #c9a84c; line-height: 1.7; margin-bottom: 32px; }
+  .config-banner strong { color: #e4c97a; }
+  .config-banner code { background: rgba(201,168,76,0.15); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 12px; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 2rem; text-align: center; font-size: 12px; color: #444; position: relative; }
+  footer::before { content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,0,0,0.4), transparent); }
   footer span { color: var(--blood-bright); }
 
-  /* ---------- RESPONSIVE ---------- */
   @media (max-width: 600px) {
     .site-header { padding: 0 1rem; }
     nav.header-nav a { display: none; }
     .main { padding: 40px 1rem 60px; }
     .ranks-grid { grid-template-columns: 1fr 1fr; }
-    table.staff-table thead th:nth-child(3),
-    table.staff-table tbody td:nth-child(3) { display: none; }
+    table.staff-table thead th:nth-child(4), table.staff-table tbody td:nth-child(4) { display: none; }
     .pact-section { padding: 24px 18px; }
     .login-section { padding: 28px 20px; }
   }
@@ -549,7 +216,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="logo-area">
     <div class="logo-icon">
@@ -563,15 +229,21 @@
     <span class="logo-text">Blood<span>Bound</span> SMP</span>
     <span class="header-badge">Staff Portal</span>
   </div>
-  <nav class="header-nav">
-    <a href="#ranks" class="active">Ranks</a>
-    <a href="#staff">Team</a>
-    <a href="#pact">The Pact</a>
-    <a href="#login">Login</a>
-  </nav>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="header-user" id="headerUser">
+      <img class="header-avatar" id="headerAvatar" src="" alt="avatar"/>
+      <span class="header-username" id="headerUsername"></span>
+      <button class="btn-logout" onclick="logout()">Log out</button>
+    </div>
+    <nav class="header-nav">
+      <a href="#ranks" class="active">Ranks</a>
+      <a href="#staff">Team</a>
+      <a href="#pact">The Pact</a>
+      <a href="#login">Login</a>
+    </nav>
+  </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <p class="hero-label">Blood-Bound &nbsp;·&nbsp; Trust &nbsp;·&nbsp; Authority</p>
   <h1>LiamsLifesteal<br><span class="accent">Staff Portal</span></h1>
@@ -579,22 +251,22 @@
   <div class="hero-divider"></div>
 </section>
 
-<!-- MAIN CONTENT -->
 <main class="main">
 
-  <!-- RANKS SECTION -->
+  <!-- CONFIG BANNER — remove once configured -->
+  <div class="config-banner" id="configBanner">
+    ⚙️ <strong>Setup required:</strong> Open this file in a text editor and fill in the config at the top of the &lt;script&gt; tag:
+    <code>CLIENT_ID</code>, <code>GUILD_ID</code>, <code>REDIRECT_URI</code>, and <code>PROXY_URL</code>.
+    See <strong>worker.js</strong> for the Cloudflare Worker setup. Remove this banner when done.
+  </div>
+
   <div id="ranks">
     <p class="section-eyebrow">Hierarchy</p>
     <h2 class="section-title">The ranks of the pact</h2>
     <p class="section-desc">Each rank carries responsibilities. Not all doors are open to everyone.</p>
-
     <div class="ranks-grid">
-      <!-- Moderator -->
       <div class="rank-card mod">
-        <div class="rank-badge mod">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#5dade2" stroke-width="1.5"/></svg>
-          Moderator
-        </div>
+        <div class="rank-badge mod">Moderator</div>
         <div class="rank-name">Moderator</div>
         <div class="rank-desc">The guardians of the servers. First point of contact for players.</div>
         <ul class="rank-perms">
@@ -604,13 +276,8 @@
           <li>Basic server commands</li>
         </ul>
       </div>
-
-      <!-- Admin -->
       <div class="rank-card admin">
-        <div class="rank-badge admin">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="2" stroke="#e59a50" stroke-width="1.5"/></svg>
-          Admin
-        </div>
+        <div class="rank-badge admin">Admin</div>
         <div class="rank-name">Admin</div>
         <div class="rank-desc">Advanced staff members with broader permissions and management duties.</div>
         <ul class="rank-perms">
@@ -620,13 +287,8 @@
           <li>Organise events</li>
         </ul>
       </div>
-
-      <!-- Developer -->
       <div class="rank-card dev restricted">
-        <div class="rank-badge dev">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5 L4 3 L6 5 L8 3" stroke="#52c97f" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Developer
-        </div>
+        <div class="rank-badge dev">Developer</div>
         <div class="rank-name">Developer</div>
         <div class="rank-desc">Builders of the BloodBound world. Plugins, maps, and systems.</div>
         <ul class="rank-perms">
@@ -640,13 +302,8 @@
           By Co-Owner / Owner only
         </div>
       </div>
-
-      <!-- Co-Owner -->
       <div class="rank-card coowner restricted">
-        <div class="rank-badge coowner">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1 L6.2 3.6 L9 3.9 L7 5.8 L7.6 8.6 L5 7.2 L2.4 8.6 L3 5.8 L1 3.9 L3.8 3.6 Z" stroke="#c9a84c" stroke-width="1.2"/></svg>
-          Co-Owner
-        </div>
+        <div class="rank-badge coowner">Co-Owner</div>
         <div class="rank-name">Co-Owner</div>
         <div class="rank-desc">Second in command. Manages the team on behalf of the Owner.</div>
         <ul class="rank-perms">
@@ -660,13 +317,8 @@
           By Co-Owner / Owner only
         </div>
       </div>
-
-      <!-- Owner -->
-      <div class="rank-card owner restricted" style="grid-column: span 1;">
-        <div class="rank-badge owner">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7 L2.5 3 L5 5.5 L7.5 2 L8.5 7 Z" stroke="#e05050" stroke-width="1.2" stroke-linejoin="round"/></svg>
-          Owner
-        </div>
+      <div class="rank-card owner restricted">
+        <div class="rank-badge owner">Owner</div>
         <div class="rank-name">Owner</div>
         <div class="rank-desc">Absolute power over the BloodBound realm. The pact began here.</div>
         <ul class="rank-perms">
@@ -681,15 +333,11 @@
         </div>
       </div>
     </div>
-
-    <!-- Restricted notice -->
     <div class="restricted-notice">
       <div class="lock-icon">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r="1.2" fill="currentColor"/></svg>
       </div>
-      <div>
-        The ranks <strong style="color:#fff">Developer</strong>, <strong style="color:#fff">Co-Owner</strong>, and <strong style="color:#fff">Owner</strong> cannot be reached through a regular application. Access to these ranks can only be granted by a current Co-Owner or Owner. Requests through other channels will be ignored.
-      </div>
+      <div>The ranks <strong style="color:#fff">Developer</strong>, <strong style="color:#fff">Co-Owner</strong>, and <strong style="color:#fff">Owner</strong> cannot be reached through a regular application. Access can only be granted by a current Co-Owner or Owner. Requests through other channels will be ignored.</div>
     </div>
   </div>
 
@@ -697,68 +345,28 @@
   <div id="staff" class="staff-section">
     <p class="section-eyebrow">The Team</p>
     <h2 class="section-title">Active staff members</h2>
-    <p class="section-desc">The blood-bound who uphold the order.</p>
-
+    <p class="section-desc">The blood-bound who uphold the order — pulled live from Discord.</p>
     <div class="staff-table-wrap">
       <div class="staff-table-header">
-        <span>5 staff members active</span>
-        <span><span class="online-dot"></span>3 online</span>
+        <span id="staffCount">Loading members…</span>
+        <span id="staffOnline"></span>
       </div>
-      <table class="staff-table">
-        <thead>
-          <tr>
-            <th>Player</th>
-            <th>Rank</th>
-            <th>Status</th>
-            <th>Member since</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><div class="td-name"><div class="avatar">L</div>Liam_NL</div></td>
-            <td><span class="rank-badge owner" style="font-size:11px;padding:3px 9px;">Owner</span></td>
-            <td><span class="status-pill online">● Online</span></td>
-            <td>Jan 2024</td>
-          </tr>
-          <tr>
-            <td><div class="td-name"><div class="avatar">S</div>Shadow_PvP</div></td>
-            <td><span class="rank-badge coowner" style="font-size:11px;padding:3px 9px;">Co-Owner</span></td>
-            <td><span class="status-pill afk">● AFK</span></td>
-            <td>Jan 2024</td>
-          </tr>
-          <tr>
-            <td><div class="td-name"><div class="avatar">V</div>VoidCraft</div></td>
-            <td><span class="rank-badge dev" style="font-size:11px;padding:3px 9px;">Developer</span></td>
-            <td><span class="status-pill online">● Online</span></td>
-            <td>Feb 2024</td>
-          </tr>
-          <tr>
-            <td><div class="td-name"><div class="avatar">B</div>BloodAxe</div></td>
-            <td><span class="rank-badge admin" style="font-size:11px;padding:3px 9px;">Admin</span></td>
-            <td><span class="status-pill offline">● Offline</span></td>
-            <td>Mar 2024</td>
-          </tr>
-          <tr>
-            <td><div class="td-name"><div class="avatar">N</div>NightWarden</div></td>
-            <td><span class="rank-badge mod" style="font-size:11px;padding:3px 9px;">Moderator</span></td>
-            <td><span class="status-pill online">● Online</span></td>
-            <td>Apr 2024</td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="staffTableBody">
+        <div class="staff-loading">
+          <div class="spinner"></div>
+          Fetching members from Discord…
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- PACT SECTION -->
+  <!-- PACT -->
   <div id="pact">
     <p class="section-eyebrow">Code of Conduct</p>
     <h2 class="section-title">The Blood Pact</h2>
     <p class="section-desc">Those who break these rules forfeit their place in the BloodBound world.</p>
-
     <div class="pact-section">
-      <div class="pact-title">
-        <span class="skull">✦</span> The Laws of the Void
-      </div>
+      <div class="pact-title"><span class="skull">✦</span> The Laws of the Void</div>
       <ul class="pact-rules">
         <li><span class="rule-num">I.</span> Staff never abuses their rank for personal gain on the server.</li>
         <li><span class="rule-num">II.</span> Decisions are made with reasoning and never out of emotion. Players deserve fair treatment.</li>
@@ -771,37 +379,301 @@
     </div>
   </div>
 
-  <!-- LOGIN SECTION -->
+  <!-- LOGIN -->
   <div id="login">
     <p class="section-eyebrow">Access</p>
     <h2 class="section-title">Staff login</h2>
-    <p class="section-desc">Log in to enter the internal staff panel.</p>
-
+    <p class="section-desc">Log in with Discord to verify your staff rank.</p>
     <div class="login-section">
-      <div class="login-title">Enter the Void</div>
-      <div class="login-sub">Use your staff account to log in.</div>
-      <div class="form-field">
-        <label class="form-label">Username</label>
-        <input class="form-input" type="text" placeholder="YourMCName" />
+      <div class="login-discord-wrap" id="loginDiscordWrap">
+        <div class="login-title">Enter the Void</div>
+        <div class="login-sub">Log in with your Discord account. We'll verify your role in the BloodBound server automatically.</div>
+        <a class="btn-discord" id="discordLoginBtn" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+          </svg>
+          Log in with Discord
+        </a>
+        <div class="form-note">Only members with a staff role in the BloodBound Discord can access the staff panel.<br><br>No Discord? <a href="#">Contact an Admin.</a></div>
       </div>
-      <div class="form-field">
-        <label class="form-label">Password</label>
-        <input class="form-input" type="password" placeholder="••••••••" />
-      </div>
-      <button class="btn-login">Log In</button>
-      <div class="form-note">
-        No account? <a href="#">Request access</a> from an Admin or higher.
+
+      <div class="logged-in-panel" id="loggedInPanel">
+        <img class="logged-in-avatar" id="loginAvatar" src="" alt="Your Discord avatar"/>
+        <div class="logged-in-name" id="loginName"></div>
+        <div class="logged-in-status" id="loginStatus"></div>
+        <button class="btn-logout-main" onclick="logout()">Log out</button>
       </div>
     </div>
   </div>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div>© 2024 <span>BloodBound SMP</span> &nbsp;·&nbsp; LiamsLifesteal &nbsp;·&nbsp; All rights reserved</div>
   <div style="margin-top:6px;font-size:11px;color:#333">The pact binds all who enter the Void.</div>
 </footer>
 
+<script>
+  // ============================================================
+  //  CONFIGURATION — fill these in before going live
+  // ============================================================
+  const CONFIG = {
+    CLIENT_ID:    'YOUR_CLIENT_ID_HERE',       // Discord application Client ID
+    GUILD_ID:     'YOUR_GUILD_ID_HERE',         // Your Discord server ID
+    REDIRECT_URI: window.location.href.split('#')[0], // Auto-detects current URL (change if needed)
+    PROXY_URL:    'YOUR_CLOUDFLARE_WORKER_URL_HERE',  // e.g. https://bloodbound-proxy.yourname.workers.dev
+
+    // Map Discord role names (exact, case-sensitive) to portal rank classes
+    // Add or remove roles to match your actual Discord server roles
+    ROLE_MAP: {
+      'Owner':     { class: 'owner',   label: 'Owner',      since: null },
+      'Co-Owner':  { class: 'coowner', label: 'Co-Owner',   since: null },
+      'Developer': { class: 'dev',     label: 'Developer',  since: null },
+      'Admin':     { class: 'admin',   label: 'Admin',      since: null },
+      'Moderator': { class: 'mod',     label: 'Moderator',  since: null },
+    },
+
+    // Role priority for display (highest first)
+    ROLE_PRIORITY: ['Owner', 'Co-Owner', 'Developer', 'Admin', 'Moderator'],
+  };
+  // ============================================================
+
+  const SCOPES = 'identify guilds.members.read';
+  let currentUser = null;
+
+  // --- OAuth helpers ---
+  function buildOAuthURL() {
+    const params = new URLSearchParams({
+      client_id:     CONFIG.CLIENT_ID,
+      redirect_uri:  CONFIG.REDIRECT_URI,
+      response_type: 'token',
+      scope:         SCOPES,
+    });
+    return `https://discord.com/api/oauth2/authorize?${params}`;
+  }
+
+  function getTokenFromHash() {
+    const hash = window.location.hash.slice(1);
+    const params = new URLSearchParams(hash);
+    return params.get('access_token') || null;
+  }
+
+  function saveToken(token) {
+    const expires = Date.now() + (parseInt(new URLSearchParams(window.location.hash.slice(1)).get('expires_in') || '604800') * 1000);
+    localStorage.setItem('bb_token', token);
+    localStorage.setItem('bb_token_exp', expires);
+  }
+
+  function loadToken() {
+    const token = localStorage.getItem('bb_token');
+    const exp   = parseInt(localStorage.getItem('bb_token_exp') || '0');
+    if (!token || Date.now() > exp) return null;
+    return token;
+  }
+
+  function logout() {
+    localStorage.removeItem('bb_token');
+    localStorage.removeItem('bb_token_exp');
+    currentUser = null;
+    updateUI(null);
+    loadStaffTable(); // reload placeholder state
+  }
+
+  // --- Discord API calls ---
+  async function fetchMe(token) {
+    const res = await fetch('https://discord.com/api/v10/users/@me', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error('Failed to fetch user');
+    return res.json();
+  }
+
+  async function fetchGuildMember(token) {
+    // This requires guilds.members.read scope + the user being in the guild
+    const res = await fetch(`https://discord.com/api/v10/users/@me/guilds/${CONFIG.GUILD_ID}/member`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (res.status === 404) return null; // not in guild
+    if (!res.ok) throw new Error('Failed to fetch guild member');
+    return res.json();
+  }
+
+  // Fetch all staff members via Cloudflare Worker proxy (uses bot token server-side)
+  async function fetchStaffMembers() {
+    if (CONFIG.PROXY_URL === 'YOUR_CLOUDFLARE_WORKER_URL_HERE') return null; // not configured
+    const res = await fetch(`${CONFIG.PROXY_URL}/staff?guild=${CONFIG.GUILD_ID}`);
+    if (!res.ok) throw new Error('Proxy error');
+    return res.json();
+  }
+
+  // --- UI helpers ---
+  function avatarUrl(user) {
+    if (!user.avatar) return `https://cdn.discordapp.com/embed/avatars/${(parseInt(user.discriminator || '0') % 5)}.png`;
+    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=64`;
+  }
+
+  function getTopRole(roleNames) {
+    for (const r of CONFIG.ROLE_PRIORITY) {
+      if (roleNames.includes(r)) return r;
+    }
+    return null;
+  }
+
+  function rankBadgeHTML(roleClass, label) {
+    return `<span class="rank-badge ${roleClass}" style="font-size:11px;padding:3px 9px;">${label}</span>`;
+  }
+
+  function updateUI(user) {
+    const headerUser = document.getElementById('headerUser');
+    const headerAvatar = document.getElementById('headerAvatar');
+    const headerUsername = document.getElementById('headerUsername');
+    const loginWrap = document.getElementById('loginDiscordWrap');
+    const loggedInPanel = document.getElementById('loggedInPanel');
+    const loginAvatar = document.getElementById('loginAvatar');
+    const loginName = document.getElementById('loginName');
+    const loginStatus = document.getElementById('loginStatus');
+
+    if (user) {
+      const url = avatarUrl(user);
+      headerAvatar.src = url;
+      headerUsername.textContent = user.username;
+      headerUser.classList.add('visible');
+      loginWrap.classList.add('hidden');
+      loggedInPanel.classList.add('visible');
+      loginAvatar.src = url;
+      loginName.textContent = user.username;
+      if (user.topRole) {
+        const roleInfo = CONFIG.ROLE_MAP[user.topRole];
+        loginStatus.textContent = `✓ Verified — ${roleInfo?.label || user.topRole}`;
+        loginStatus.className = 'logged-in-status staff';
+      } else {
+        loginStatus.textContent = '✗ No staff role found in this server.';
+        loginStatus.className = 'logged-in-status not-staff';
+      }
+    } else {
+      headerUser.classList.remove('visible');
+      loginWrap.classList.remove('hidden');
+      loggedInPanel.classList.remove('visible');
+    }
+  }
+
+  function renderStaffTable(members) {
+    const tbody = document.getElementById('staffTableBody');
+    const countEl = document.getElementById('staffCount');
+
+    if (!members || members.length === 0) {
+      tbody.innerHTML = '<div class="staff-error">No staff members found. Check your role names in CONFIG.ROLE_MAP.</div>';
+      countEl.textContent = '0 staff members';
+      return;
+    }
+
+    // Sort by role priority
+    members.sort((a, b) => {
+      const ai = CONFIG.ROLE_PRIORITY.indexOf(a.topRole);
+      const bi = CONFIG.ROLE_PRIORITY.indexOf(b.topRole);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
+
+    countEl.textContent = `${members.length} staff member${members.length !== 1 ? 's' : ''}`;
+    document.getElementById('staffOnline').innerHTML = ''; // live presence needs Gateway; omit for static
+
+    const rows = members.map(m => {
+      const roleInfo = CONFIG.ROLE_MAP[m.topRole] || { class: 'mod', label: m.topRole };
+      const initials = (m.nick || m.username || '?').slice(0, 1).toUpperCase();
+      const avUrl = m.avatar
+        ? `https://cdn.discordapp.com/guilds/${CONFIG.GUILD_ID}/users/${m.id}/avatars/${m.avatar}.webp?size=64`
+        : (m.userAvatar ? `https://cdn.discordapp.com/avatars/${m.id}/${m.userAvatar}.webp?size=64` : null);
+
+      const avatarHTML = avUrl
+        ? `<div class="avatar"><img src="${avUrl}" alt="${initials}" onerror="this.parentElement.textContent='${initials}'"/></div>`
+        : `<div class="avatar">${initials}</div>`;
+
+      const joined = m.joined_at ? new Date(m.joined_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : '—';
+      const displayName = m.nick || m.username || 'Unknown';
+
+      return `<tr>
+        <td><div class="td-name">${avatarHTML}${displayName}</div></td>
+        <td>${rankBadgeHTML(roleInfo.class, roleInfo.label)}</td>
+        <td>${m.discord_tag || ''}</td>
+        <td>${joined}</td>
+      </tr>`;
+    }).join('');
+
+    tbody.innerHTML = `<table class="staff-table">
+      <thead><tr>
+        <th>Player</th><th>Rank</th><th>Discord</th><th>Member since</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+  }
+
+  async function loadStaffTable() {
+    const tbody = document.getElementById('staffTableBody');
+    tbody.innerHTML = '<div class="staff-loading"><div class="spinner"></div>Fetching members from Discord…</div>';
+    document.getElementById('staffCount').textContent = 'Loading members…';
+    try {
+      const members = await fetchStaffMembers();
+      if (members === null) {
+        // Proxy not configured — show static placeholder
+        renderStaticPlaceholder();
+      } else {
+        renderStaffTable(members);
+      }
+    } catch (e) {
+      tbody.innerHTML = `<div class="staff-error">Could not load staff list. Is the Cloudflare Worker running?<br><small style="color:#666;margin-top:4px;display:block">${e.message}</small></div>`;
+      document.getElementById('staffCount').textContent = 'Error loading';
+    }
+  }
+
+  function renderStaticPlaceholder() {
+    document.getElementById('staffCount').textContent = 'Configure PROXY_URL to load live data';
+    document.getElementById('staffTableBody').innerHTML = `<table class="staff-table">
+      <thead><tr><th>Player</th><th>Rank</th><th>Discord</th><th>Member since</th></tr></thead>
+      <tbody>
+        <tr><td><div class="td-name"><div class="avatar">L</div>Liam_NL</div></td><td><span class="rank-badge owner" style="font-size:11px;padding:3px 9px;">Owner</span></td><td style="color:#555">—</td><td>Jan 2024</td></tr>
+        <tr><td><div class="td-name"><div class="avatar">S</div>Shadow_PvP</div></td><td><span class="rank-badge coowner" style="font-size:11px;padding:3px 9px;">Co-Owner</span></td><td style="color:#555">—</td><td>Jan 2024</td></tr>
+        <tr><td><div class="td-name"><div class="avatar">V</div>VoidCraft</div></td><td><span class="rank-badge dev" style="font-size:11px;padding:3px 9px;">Developer</span></td><td style="color:#555">—</td><td>Feb 2024</td></tr>
+        <tr><td><div class="td-name"><div class="avatar">B</div>BloodAxe</div></td><td><span class="rank-badge admin" style="font-size:11px;padding:3px 9px;">Admin</span></td><td style="color:#555">—</td><td>Mar 2024</td></tr>
+        <tr><td><div class="td-name"><div class="avatar">N</div>NightWarden</div></td><td><span class="rank-badge mod" style="font-size:11px;padding:3px 9px;">Moderator</span></td><td style="color:#555">—</td><td>Apr 2024</td></tr>
+      </tbody>
+    </table>`;
+  }
+
+  // --- Init ---
+  async function init() {
+    // Set Discord login URL
+    document.getElementById('discordLoginBtn').href = buildOAuthURL();
+
+    // Check for token in URL hash (just returned from Discord)
+    const hashToken = getTokenFromHash();
+    if (hashToken) {
+      saveToken(hashToken);
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
+    const token = hashToken || loadToken();
+    if (token) {
+      try {
+        const [user, member] = await Promise.all([fetchMe(token), fetchGuildMember(token)]);
+        const roleNames = member ? (member.roles_resolved || []) : [];
+        // roles_resolved comes from our proxy; fallback handled in worker
+        user.topRole = getTopRole(roleNames);
+        currentUser = user;
+        updateUI(user);
+      } catch (e) {
+        logout();
+      }
+    }
+
+    // Hide config banner if configured
+    if (CONFIG.CLIENT_ID !== 'YOUR_CLIENT_ID_HERE') {
+      document.getElementById('configBanner').style.display = 'none';
+    }
+
+    loadStaffTable();
+  }
+
+  init();
+</script>
 </body>
 </html>
