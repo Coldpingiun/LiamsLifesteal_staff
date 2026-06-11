@@ -66,7 +66,6 @@
   nav.header-nav a:hover { color: #fff; background: var(--void-4); }
   nav.header-nav a.active { color: var(--blood-bright); }
 
-  /* User pill in header */
   .header-user { display: none; align-items: center; gap: 10px; }
   .header-user.visible { display: flex; }
   .header-avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--blood-bright); object-fit: cover; }
@@ -113,7 +112,6 @@
   .rank-perms li::before { content: '—'; color: var(--blood-bright); flex-shrink: 0; }
   .restricted-pill { display: flex; align-items: center; gap: 5px; margin-top: 14px; font-size: 11px; color: var(--blood-bright); font-weight: 500; letter-spacing: 0.06em; }
 
-  /* Staff table */
   .staff-section { margin-bottom: 64px; }
   .staff-table-wrap { background: var(--void-3); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
   .staff-table-header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
@@ -133,13 +131,11 @@
   .status-pill.online  { background: rgba(46,204,113,0.12); color: #52c97f; }
   .status-pill.offline { background: rgba(136,136,136,0.12); color: var(--ash); }
 
-  /* Staff loading / error states */
   .staff-loading { padding: 40px 20px; text-align: center; color: var(--ash); font-size: 14px; }
   .staff-loading .spinner { width: 24px; height: 24px; border: 2px solid var(--border); border-top-color: var(--blood-bright); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .staff-error { padding: 24px 20px; text-align: center; color: var(--blood-bright); font-size: 13px; }
 
-  /* Pact */
   .pact-section { background: var(--void-3); border: 1px solid var(--border); border-radius: 10px; padding: 32px; position: relative; overflow: hidden; margin-bottom: 64px; }
   .pact-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(139,0,0,0.08), transparent); pointer-events: none; }
   .pact-title { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 600; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
@@ -148,13 +144,11 @@
   .pact-rules li { display: flex; gap: 12px; font-size: 14px; color: var(--ash-light); line-height: 1.6; }
   .rule-num { font-family: 'Cinzel', serif; font-size: 12px; color: var(--blood-bright); font-weight: 600; min-width: 22px; padding-top: 1px; }
 
-  /* Login section */
   .login-section { max-width: 420px; margin: 0 auto 64px; background: var(--void-3); border: 1px solid var(--border); border-radius: 12px; padding: 36px 32px; position: relative; overflow: hidden; }
   .login-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blood-bright), transparent); }
   .login-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
   .login-sub { font-size: 13px; color: var(--ash); margin-bottom: 24px; line-height: 1.6; }
 
-  /* Discord button */
   .btn-discord {
     width: 100%;
     background: #5865F2;
@@ -178,7 +172,6 @@
   .btn-discord:active { transform: translateY(0); }
   .btn-discord svg { flex-shrink: 0; }
 
-  /* Logged-in panel inside login section */
   .logged-in-panel { display: none; text-align: center; }
   .logged-in-panel.visible { display: block; }
   .login-discord-wrap { display: block; }
@@ -198,11 +191,6 @@
 
   .restricted-notice { background: rgba(139,0,0,0.08); border: 1px solid rgba(192,57,43,0.25); border-radius: 8px; padding: 14px 18px; font-size: 13px; color: var(--ash-light); line-height: 1.6; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 40px; }
   .restricted-notice .lock-icon { color: var(--blood-bright); flex-shrink: 0; margin-top: 1px; }
-
-  /* Config banner */
-  .config-banner { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #c9a84c; line-height: 1.7; margin-bottom: 32px; }
-  .config-banner strong { color: #e4c97a; }
-  .config-banner code { background: rgba(201,168,76,0.15); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 12px; }
 
   footer { border-top: 1px solid var(--border); padding: 28px 2rem; text-align: center; font-size: 12px; color: #444; position: relative; }
   footer::before { content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,0,0,0.4), transparent); }
@@ -257,13 +245,6 @@
 </section>
 
 <main class="main">
-
-  <!-- CONFIG BANNER — remove once configured -->
-  <div class="config-banner" id="configBanner">
-    ⚙️ <strong>Setup required:</strong> Open this file in a text editor and fill in the config at the top of the &lt;script&gt; tag:
-    <code>CLIENT_ID</code>, <code>GUILD_ID</code>, <code>REDIRECT_URI</code>, and <code>PROXY_URL</code>.
-    See <strong>worker.js</strong> for the Cloudflare Worker setup. Remove this banner when done.
-  </div>
 
   <div id="ranks">
     <p class="section-eyebrow">Hierarchy</p>
@@ -420,24 +401,24 @@
 
 <script>
   // ============================================================
-  //  CONFIGURATION — fill these in before going live
+  //  CONFIGURATION
   // ============================================================
   const CONFIG = {
-  CLIENT_ID: '1513941515720724541',
-  GUILD_ID: '1422950815789879308',
-  REDIRECT_URI: 'https://coldpingiun.github.io/LiamsLifesteal_staff/',
-  PROXY_URL: 'https://liamslifesteal-staff.noppe-sander.workers.dev',
+    CLIENT_ID:    '1513941515720724541',
+    GUILD_ID:     '1422950815789879308',
+    REDIRECT_URI: 'https://coldpingiun.github.io/LiamsLifesteal_staff/',
+    PROXY_URL:    'https://liamslifesteal-staff.noppe-sander.workers.dev',
 
-  ROLE_MAP: {
-    'Owner':     { class: 'owner',   label: 'Owner',      since: null },
-    'Co-Owner':  { class: 'coowner', label: 'Co-Owner',   since: null },
-    'Developer': { class: 'dev',     label: 'Developer',  since: null },
-    'Admin':     { class: 'admin',   label: 'Admin',      since: null },
-    'Moderator': { class: 'mod',     label: 'Moderator',  since: null },
-  },
+    ROLE_MAP: {
+      'Owner':     { class: 'owner',   label: 'Owner'     },
+      'Co-Owner':  { class: 'coowner', label: 'Co-Owner'  },
+      'Developer': { class: 'dev',     label: 'Developer' },
+      'Admin':     { class: 'admin',   label: 'Admin'     },
+      'Moderator': { class: 'mod',     label: 'Moderator' },
+    },
 
-  ROLE_PRIORITY: ['Owner', 'Co-Owner', 'Developer', 'Admin', 'Moderator'],
-};
+    ROLE_PRIORITY: ['Owner', 'Co-Owner', 'Developer', 'Admin', 'Moderator'],
+  };
   // ============================================================
 
   const SCOPES = 'identify guilds.members.read';
@@ -478,7 +459,7 @@
     localStorage.removeItem('bb_token_exp');
     currentUser = null;
     updateUI(null);
-    loadStaffTable(); // reload placeholder state
+    loadStaffTable();
   }
 
   // --- Discord API calls ---
@@ -490,19 +471,18 @@
     return res.json();
   }
 
-  async function fetchGuildMember(token) {
-    // This requires guilds.members.read scope + the user being in the guild
-    const res = await fetch(`https://discord.com/api/v10/users/@me/guilds/${CONFIG.GUILD_ID}/member`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    if (res.status === 404) return null; // not in guild
-    if (!res.ok) throw new Error('Failed to fetch guild member');
-    return res.json();
+  // *** FIX: gebruik de worker om role IDs → namen om te zetten ***
+  async function resolveRoles(userId) {
+    const res = await fetch(
+      `${CONFIG.PROXY_URL}/resolve-member?guild=${CONFIG.GUILD_ID}&user=${userId}`
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.roles || [];
   }
 
-  // Fetch all staff members via Cloudflare Worker proxy (uses bot token server-side)
+  // Fetch all staff members via Cloudflare Worker proxy
   async function fetchStaffMembers() {
-    if (CONFIG.PROXY_URL === 'YOUR_CLOUDFLARE_WORKER_URL_HERE') return null; // not configured
     const res = await fetch(`${CONFIG.PROXY_URL}/staff?guild=${CONFIG.GUILD_ID}`);
     if (!res.ok) throw new Error('Proxy error');
     return res.json();
@@ -526,14 +506,14 @@
   }
 
   function updateUI(user) {
-    const headerUser = document.getElementById('headerUser');
-    const headerAvatar = document.getElementById('headerAvatar');
+    const headerUser     = document.getElementById('headerUser');
+    const headerAvatar   = document.getElementById('headerAvatar');
     const headerUsername = document.getElementById('headerUsername');
-    const loginWrap = document.getElementById('loginDiscordWrap');
-    const loggedInPanel = document.getElementById('loggedInPanel');
-    const loginAvatar = document.getElementById('loginAvatar');
-    const loginName = document.getElementById('loginName');
-    const loginStatus = document.getElementById('loginStatus');
+    const loginWrap      = document.getElementById('loginDiscordWrap');
+    const loggedInPanel  = document.getElementById('loggedInPanel');
+    const loginAvatar    = document.getElementById('loginAvatar');
+    const loginName      = document.getElementById('loginName');
+    const loginStatus    = document.getElementById('loginStatus');
 
     if (user) {
       const url = avatarUrl(user);
@@ -560,7 +540,7 @@
   }
 
   function renderStaffTable(members) {
-    const tbody = document.getElementById('staffTableBody');
+    const tbody   = document.getElementById('staffTableBody');
     const countEl = document.getElementById('staffCount');
 
     if (!members || members.length === 0) {
@@ -569,7 +549,6 @@
       return;
     }
 
-    // Sort by role priority
     members.sort((a, b) => {
       const ai = CONFIG.ROLE_PRIORITY.indexOf(a.topRole);
       const bi = CONFIG.ROLE_PRIORITY.indexOf(b.topRole);
@@ -577,7 +556,7 @@
     });
 
     countEl.textContent = `${members.length} staff member${members.length !== 1 ? 's' : ''}`;
-    document.getElementById('staffOnline').innerHTML = ''; // live presence needs Gateway; omit for static
+    document.getElementById('staffOnline').innerHTML = '';
 
     const rows = members.map(m => {
       const roleInfo = CONFIG.ROLE_MAP[m.topRole] || { class: 'mod', label: m.topRole };
@@ -590,7 +569,7 @@
         ? `<div class="avatar"><img src="${avUrl}" alt="${initials}" onerror="this.parentElement.textContent='${initials}'"/></div>`
         : `<div class="avatar">${initials}</div>`;
 
-      const joined = m.joined_at ? new Date(m.joined_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : '—';
+      const joined      = m.joined_at ? new Date(m.joined_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : '—';
       const displayName = m.nick || m.username || 'Unknown';
 
       return `<tr>
@@ -615,38 +594,17 @@
     document.getElementById('staffCount').textContent = 'Loading members…';
     try {
       const members = await fetchStaffMembers();
-      if (members === null) {
-        // Proxy not configured — show static placeholder
-        renderStaticPlaceholder();
-      } else {
-        renderStaffTable(members);
-      }
+      renderStaffTable(members);
     } catch (e) {
       tbody.innerHTML = `<div class="staff-error">Could not load staff list. Is the Cloudflare Worker running?<br><small style="color:#666;margin-top:4px;display:block">${e.message}</small></div>`;
       document.getElementById('staffCount').textContent = 'Error loading';
     }
   }
 
-  function renderStaticPlaceholder() {
-    document.getElementById('staffCount').textContent = 'Configure PROXY_URL to load live data';
-    document.getElementById('staffTableBody').innerHTML = `<table class="staff-table">
-      <thead><tr><th>Player</th><th>Rank</th><th>Discord</th><th>Member since</th></tr></thead>
-      <tbody>
-        <tr><td><div class="td-name"><div class="avatar">L</div>Liam_NL</div></td><td><span class="rank-badge owner" style="font-size:11px;padding:3px 9px;">Owner</span></td><td style="color:#555">—</td><td>Jan 2024</td></tr>
-        <tr><td><div class="td-name"><div class="avatar">S</div>Shadow_PvP</div></td><td><span class="rank-badge coowner" style="font-size:11px;padding:3px 9px;">Co-Owner</span></td><td style="color:#555">—</td><td>Jan 2024</td></tr>
-        <tr><td><div class="td-name"><div class="avatar">V</div>VoidCraft</div></td><td><span class="rank-badge dev" style="font-size:11px;padding:3px 9px;">Developer</span></td><td style="color:#555">—</td><td>Feb 2024</td></tr>
-        <tr><td><div class="td-name"><div class="avatar">B</div>BloodAxe</div></td><td><span class="rank-badge admin" style="font-size:11px;padding:3px 9px;">Admin</span></td><td style="color:#555">—</td><td>Mar 2024</td></tr>
-        <tr><td><div class="td-name"><div class="avatar">N</div>NightWarden</div></td><td><span class="rank-badge mod" style="font-size:11px;padding:3px 9px;">Moderator</span></td><td style="color:#555">—</td><td>Apr 2024</td></tr>
-      </tbody>
-    </table>`;
-  }
-
   // --- Init ---
   async function init() {
-    // Set Discord login URL
     document.getElementById('discordLoginBtn').href = buildOAuthURL();
 
-    // Check for token in URL hash (just returned from Discord)
     const hashToken = getTokenFromHash();
     if (hashToken) {
       saveToken(hashToken);
@@ -656,20 +614,18 @@
     const token = hashToken || loadToken();
     if (token) {
       try {
-        const [user, member] = await Promise.all([fetchMe(token), fetchGuildMember(token)]);
-        const roleNames = member ? (member.roles_resolved || []) : [];
-        // roles_resolved comes from our proxy; fallback handled in worker
+        // 1. Haal de Discord gebruiker op
+        const user = await fetchMe(token);
+
+        // 2. *** FIX: haal role namen op via de worker (bot token kent de IDs) ***
+        const roleNames = await resolveRoles(user.id);
         user.topRole = getTopRole(roleNames);
+
         currentUser = user;
         updateUI(user);
       } catch (e) {
         logout();
       }
-    }
-
-    // Hide config banner if configured
-    if (CONFIG.CLIENT_ID !== 'YOUR_CLIENT_ID_HERE') {
-      document.getElementById('configBanner').style.display = 'none';
     }
 
     loadStaffTable();
